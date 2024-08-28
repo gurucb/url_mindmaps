@@ -5,5 +5,5 @@
 # 3. Need to make this module more modular.
 
 class AISkill():
-    def generate_subtopics(self,):
+    def generate_subtopics(self,header_json,user_prompt):
         pass
