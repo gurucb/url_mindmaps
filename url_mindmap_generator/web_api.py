@@ -6,5 +6,5 @@
 
 
 class web_api():
-    def generate_mindmap_api(self):
+    def generate_mindmap_api(self, url, user_prompt):
         pass
