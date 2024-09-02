@@ -86,9 +86,9 @@
 #     user_prompt = "I'm interested in learning about reliability design principles. Can you provide a summary of each section?"
 #     base_url = "https://learn.microsoft.com/en-us/azure/well-architected/reliability/principles"
 
-#     api_key = "6f28b6515c5440938b6c3a7d9a5dadc6"  # Replace with your actual API key
-#     endpoint = "https://langchainopenaiguru.openai.azure.com"  # Replace with your endpoint
-#     deployment_name = "gpt-4o-mini"  # Your deployment name
+#     api_key = ""  # Replace with your actual API key
+#     endpoint = ""  # Replace with your endpoint
+#     deployment_name = ""  # Your deployment name
 
 #     ai_skill = AzureAISkill(api_key=api_key, endpoint=endpoint, deployment_name=deployment_name)
 #     subtopics = ai_skill.generate_subtopics(header_json, user_prompt, base_url)
