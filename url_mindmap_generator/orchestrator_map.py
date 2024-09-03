@@ -6,6 +6,7 @@ import ai_plugin as ai
 import mind_maps as mp
 
 class Orchestrator():
+
     content_json = {}
     anchor_json = {}
     def generate_mindmap(self,url, user_prompt):

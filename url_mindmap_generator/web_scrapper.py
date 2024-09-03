@@ -46,7 +46,8 @@ class web_scrapper():
         return anchors
     def clean_anchors(self,url):
         pass
-
+    def extract_all_content(self, url):
+        pass
     def clean_response(self,url):
         pass
 
