@@ -105,9 +105,9 @@ if __name__ == "__main__":
     user_prompt = "I'm interested in learning about reliability design principles. Can you provide a summary of each section?"
     base_url = "https://learn.microsoft.com/en-us/azure/well-architected/reliability/principles"
 
-    api_key = "3e328fb1d0a3439990774cb1543bae17"  # Replace with your actual API key
-    endpoint = "https://kirthikarajaganeshcognitive.openai.azure.com"  # Replace with your endpoint
-    deployment_name = "gpt-4o-mini"  # Your deployment name
+    api_key = ""  # Replace with your actual API key
+    endpoint = ""  # Replace with your endpoint
+    deployment_name = ""  # Your deployment name
 
     ai_skill = ai_orchestrator(api_key=api_key, endpoint=endpoint, deployment_name=deployment_name)
     subtopics = ai_skill.generate_subtopics(head_json, user_prompt, base_url)
