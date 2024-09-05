@@ -533,7 +533,7 @@ if __name__ == "__main__":
         {"h_type": "h2", "text": ["Keep it simple"]}
     ]
 
-    user_prompt = "I'm interested in learning about reliability design principles. Can you provide a summary of each section?"
+    user_prompt = f"I'm interested in learning about reliability design principles. Can you provide a summary of each section?"
     base_url = "https://learn.microsoft.com/en-us/azure/well-architected/reliability/principles"
 
     api_key = ""  # Replace with your actual API key

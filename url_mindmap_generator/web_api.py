@@ -3,7 +3,7 @@
 # 1. Build Jazzy web page that connects to Web API
 # 2. Web API takes dependency on Orchestrator
 
-from orchestrator_map import Orchestrator
+from orchestrator import Orchestrator
 import flask
 
 class web_api():
