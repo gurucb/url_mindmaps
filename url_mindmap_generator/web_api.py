@@ -31,21 +31,21 @@ class web_api():
         return self.create_mindmap_result()
 
     def create_mindmap_result(self):
-        # orch = Orchestrator()
-        # content_json, anchor_json = orch.generate_mindmap(
-        #                         user_prompt=self.url,
-        #                         user_prompt = self.user_prompt
-        #                     )
+        orch = Orchestrator()
+        content_json, anchor_json = orch.generate_mindmap(
+                                user_prompt=self.url,
+                                user_prompt = self.user_prompt
+                            )
         # Post Processing if required using both JSON
         # Create a response object JSON
-        response = self.create_response()
+        response = self.create_response(content_json, anchor_json)
         return response
     
     def post_processing(self):
         pass
 
-    def create_response(self):
-        return {"response": "Success"}
+    def create_response(self, content_json, anchor_json):
+        return {"Content_json": content_json, "anchor_json":anchor_json}
 
 
 
