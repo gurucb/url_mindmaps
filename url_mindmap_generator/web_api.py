@@ -1,4 +1,3 @@
-
 # Owner: Kumud 
 # Purpose:
 # 1. Build Jazzy web page that connects to Web API
@@ -11,7 +10,7 @@ class web_api():
     def __init__(self):
         self.app = flask.Flask(__name__)
         self.setup_routes()
-        self.app.run()
+        self.app.run(port=5001)
 
     def setup_routes(self):
         @self.app.route('/get_mindmap_data', methods=['POST'])
@@ -32,21 +31,19 @@ class web_api():
 
     def create_mindmap_result(self):
         orch = Orchestrator()
-        content_json, anchor_json = orch.generate_mindmap(
-                                user_prompt=self.url,
-                                user_prompt = self.user_prompt
+        content_json= orch.generate_mindmap(
+                                url=self.url,
+                                user_prompt=self.user_prompt
                             )
         # Post Processing if required using both JSON
         # Create a response object JSON
-        response = self.create_response(content_json, anchor_json)
+        response = self.create_response(content_json)
         return response
     
     def post_processing(self):
         pass
 
-    def create_response(self, content_json, anchor_json):
-        return {"Content_json": content_json, "anchor_json":anchor_json}
-
-
+    def create_response(self, content_json):
+        return content_json
 
 api_instance = web_api()
