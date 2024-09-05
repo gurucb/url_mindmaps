@@ -39,7 +39,6 @@ class web_scrapper():
             headers.append(h2)
             h2 = None
         head_json = json.dumps(headers)
-        print(head_json)
         return head_json
     def extract_anchors(self,url):
         anchors = {}

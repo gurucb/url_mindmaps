@@ -15,7 +15,7 @@ class Orchestrator():
         scrapper_object = ws.web_scrapper()
         head_json  = scrapper_object.scrape_website(url)
 
-        # ai_skills = ai.AISkill()
+        # ai_skills = ai.create_content(head_json, user_prompt, web_content)
         # ai_skills.generate_subtopics(head_json, user_prompt)
         return self.content_json
 
