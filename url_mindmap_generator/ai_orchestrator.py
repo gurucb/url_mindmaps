@@ -126,6 +126,7 @@ from collections import Counter
 import nltkmodule as nltkmodule
 import cleantext as ct
 import extractkeywords as extractkeywords
+import generatedynamicuserpromptmodule as userprompt
 
 nltkmodule.download_nltk_data()
 
@@ -135,13 +136,14 @@ class ai_orchestrator:
         self.endpoint = endpoint
         self.deployment_name = deployment_name
 
-    def generate_subtopics(self, header_json, user_prompt, base_url):
+    def generate_subtopics(self, header_json, base_url):
         mind_map = {
             "page_summary": "",
             "content": "content",
             "topics": []
         }
 
+        user_prompt = userprompt.generate_dynamic_user_prompt(base_url)
         full_page_summary = []
 
         for section in header_json:
@@ -234,7 +236,7 @@ if __name__ == "__main__":
         {"h_type": "h2", "text": ["Keep it simple"]}
     ]
 
-    user_prompt = "I'm interested in learning about reliability design principles. Can you provide a summary of each section?"
+   # user_prompt = "I'm interested in learning about reliability design principles. Can you provide a summary of each section?"
     base_url = "https://learn.microsoft.com/en-us/azure/well-architected/reliability/principles"
 
     api_key = ""  # Replace with your actual API key
@@ -242,6 +244,6 @@ if __name__ == "__main__":
     deployment_name = ""  # Your deployment name
 
     ai_skill = ai_orchestrator(api_key=api_key, endpoint=endpoint, deployment_name=deployment_name)
-    subtopics = ai_skill.generate_subtopics(head_json, user_prompt, base_url)
+    subtopics = ai_skill.generate_subtopics(head_json,base_url)
 
     print(subtopics)  # Print or handle the JSON output
