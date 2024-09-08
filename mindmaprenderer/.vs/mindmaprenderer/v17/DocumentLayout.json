@@ -1,0 +1,65 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\kshandilya\\Documents\\mindmaprenderer\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kshandilya\\Downloads\\ai_samples-main (1)\\ai_samples-main\\hand_written_digit_recognition_ff.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kshandilya\\Documents\\mindmaprenderer\\app\\page.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:app\\page.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "hand_written_digit_recognition_ff.py",
+              "DocumentMoniker": "C:\\Users\\kshandilya\\Downloads\\ai_samples-main (1)\\ai_samples-main\\hand_written_digit_recognition_ff.py",
+              "RelativeDocumentMoniker": "..\\..\\Downloads\\ai_samples-main (1)\\ai_samples-main\\hand_written_digit_recognition_ff.py",
+              "ToolTip": "C:\\Users\\kshandilya\\Downloads\\ai_samples-main (1)\\ai_samples-main\\hand_written_digit_recognition_ff.py",
+              "RelativeToolTip": "..\\..\\Downloads\\ai_samples-main (1)\\ai_samples-main\\hand_written_digit_recognition_ff.py",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2024-09-04T08:23:16.943Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "page.js",
+              "DocumentMoniker": "C:\\Users\\kshandilya\\Documents\\mindmaprenderer\\app\\page.js",
+              "RelativeDocumentMoniker": "app\\page.js",
+              "ToolTip": "C:\\Users\\kshandilya\\Documents\\mindmaprenderer\\app\\page.js",
+              "RelativeToolTip": "app\\page.js",
+              "ViewState": "AQIAALAAAAAAAAAAAAAYwM4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-08-29T08:41:58.089Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
