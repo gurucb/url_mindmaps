@@ -3,3 +3,6 @@ url_mindmap_generator/__pycache__/web_scrapper.cpython-312.pyc
 url_mindmap_generator/__pycache__/ai_plugin.cpython-312.pyc
 url_mindmap_generator/__pycache__/ai_plugin.cpython-312.pyc
 url_mindmap_generator/__pycache__/ai_plugin.cpython-312.pyc
+url_mindmap_generator/__pycache__/ai_cleanup_guru.cpython-312.pyc
+url_mindmap_generator/__pycache__/ai_orchestrator_guru.cpython-312.pyc
+url_mindmap_generator/__pycache__/cleantext.cpython-312.pyc
