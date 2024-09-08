@@ -1,0 +1,80 @@
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.pageSummary {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    max-height: calc(100vh - 250px); /* Adjust based on total height */
+    overflow-y: auto; /* Allows scrolling if content overflows */
+}
+
+.inputSection {
+    width: 50%;
+    padding: 20px;
+    box-sizing: border-box;
+    border-right: 2px solid #ccc;
+    overflow: auto;
+}
+
+.mapSection {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+.textarea {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 10px;
+    font-family: monospace;
+    box-sizing: border-box;
+}
+
+.button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.urlBox {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.urlBox h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.urlBox ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.urlBox li {
+    margin-bottom: 5px;
+}
+
+.urlBox a {
+    color: #0070f3;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.urlBox a:hover {
+    text-decoration: underline;
+}
+
+.urlBox i {
+    margin-right: 8px;
+}
