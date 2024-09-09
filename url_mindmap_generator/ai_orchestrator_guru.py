@@ -9,6 +9,7 @@ class AI_Orchestrator:
     data_cleanup = None
     llm = None
 
+    content_JSON = {}
     def __init__(self,llm_engine) -> None:
         self.data_cleanup = dc.DataCleanup()
         self.llm = llm.LLMOps(llm_engine=llm_engine)
@@ -24,8 +25,8 @@ class AI_Orchestrator:
             f.write(json.dumps(self.heading_json))
 
     def generate_content_JSON(self,heading_json,links_json,content) -> json:
-        content_JSON = {}
-        content_JSON["name"] = "CONTENT"
+
+        
         # initialize clean content
         self.heading_json = heading_json
         self.links_json = links_json
@@ -39,21 +40,22 @@ class AI_Orchestrator:
 
         ##Generate Page Summary
         page_summary = self.generate_page_summary()
-        content_JSON["summary"] = page_summary
+        topic_summary = self.generate_topics_with_summary()
+        self.parse_response(topic_summary)
+        self.content_JSON["page_summary"] = page_summary
 
-        return content_JSON    
+        return self.content_JSON    
 
     def generate_page_summary(self):
-        page_summary = self.llm.generate_llm_summary(self.content)
+        page_summary = self.llm.generate_summary(self.content)
         return page_summary
 
 
     def generate_topics_with_summary(self):
-        page_summary = self.llm
+        topic_summary = self.llm.generate_topics(self.content,self.heading_json)
+        return topic_summary
 
-    def generate_subtopics_with_summary(self):
+    def parse_response(self,topic_response):
         pass
-    
-    def generate_response_json(self):
-        pass
+    # Kirthika to help write this code to map output (Topic_Response) to JSON output that Kumud needs.
 

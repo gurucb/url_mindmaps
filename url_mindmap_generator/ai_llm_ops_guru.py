@@ -38,7 +38,7 @@ class LLMOps:
         return system, user, str(ins_set)
 
 
-    def generate_llm_summary(self,data=""):
+    def generate_summary(self,data=""):
         self.__init_llm_engine(self.llm_engine)
         system, user, ins_set = self.__parse_prompts("summarization")
         prompt_text = system + user + str(ins_set)
@@ -53,23 +53,27 @@ class LLMOps:
         return respone.choices[0].message.content
     
 
-    def generate_topics_with_summary(self,data="",headers=""):
+    def generate_topics(self,data="",headers=""):
         self.__init_llm_engine(self.llm_engine)
         system, user, ins_set = self.__parse_prompts("topic_extraction")
-        user  = user.replace("##prompts","{headers}")
+        headings = self.parse_headers_for_prompts(headers=headers)
+        user  = user.replace("##prompts",headings)
         prompt_text = system + user + str(ins_set)
         conversation = [
             {"role":"system","content":prompt_text},
             {"role":"user","content":data}
         ]
-        respone = self.client.chat.completions.create(
+        response = self.client.chat.completions.create(
                                                         model = self.llm_config["deployment_name"],
-                                                        messages=conversation)
-        print(respone.choices[0].message.content)
-        return respone.choices[0].message.content
+                                                        messages=conversation,
+                                                        max_tokens=3500,temperature=0.2)
+        chat_response =   json.loads(str(response.choices[0].message.content).replace("json","").replace("`",""))
 
-    def __create_system_prompts():
-        pass
+        return chat_response
 
-    def __generate_response(self,llm_engine,data,user_prompt,example=""):
-        pass
+    def parse_headers_for_prompts(self,headers):
+        headings = ""
+        for head in list(headers["h2"]):
+            headings = headings + str(head["text"][0])+"\n"
+        return headings
+        
