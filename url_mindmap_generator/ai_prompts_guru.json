@@ -12,8 +12,8 @@
         ]
     },
     "topic_extraction":{
-        "system":"You will receive a document and a set of top-level topics from a topic hierarchy. Your task is to identify generalizable topics within the document that can act as top-level topics in the hierarchy. If any relevant topics are missing from the provided set, please add them. Otherwise, output the existing top-level topics as identified in the document.",
-        "user":"Top Level Topics: {}",
+        "system":"You will receive a document and a set of top-level topics. Your task is to identify generalizable topics and at least 3 related subtopics for each topic along with summary within the document that can act as top two levels in the hierarchy. ",
+        "user":"Top Level Topics: { ##prompts }",
         "example": {},
         "instructions":[
             "[Instructions]",
@@ -23,7 +23,8 @@
             "- Each topic must reflect single topic instead of combination of topics",
             "- New topics must have a level number, a short general lable, and a topic description",
             "- Topics must be broad enough to accomodate future topics",
-            "- DO Not Generate topics outside the document"
+            "- DO Not Generate topics outside the document",
+            "- Output text in JSON format"
         ]
     },
     "sub_topic_extraction":

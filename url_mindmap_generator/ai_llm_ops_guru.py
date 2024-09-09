@@ -1,5 +1,6 @@
 import json
 from openai import AzureOpenAI
+import requests
   
 class LLMOps:
     llm_engine = None
@@ -17,7 +18,7 @@ class LLMOps:
         self.llm_config = self.llm_config[llm_engine]
         self.client = AzureOpenAI(
             azure_endpoint = self.llm_config["endpoint_url"],
-            api_key = self.llm_config["key"],
+            api_key = self.llm_config["key"] ,
             api_version = self.llm_config["version"]
         )
 
@@ -33,18 +34,39 @@ class LLMOps:
         ins_set = ""
         for ins in instructions:
             ins_set = ins_set + str(ins)
+        
+        return system, user, str(ins_set)
 
-        prompt_text = system + user + str(ins_set)
-        return prompt_text
-    def generate_llm_summary(self,data="",user_prompt="",example=""):
+
+    def generate_llm_summary(self,data=""):
         self.__init_llm_engine(self.llm_engine)
-        prompts = self.__parse_prompts("summarization")
-        completion = self.client.chat.completions.create(
-            model=self.llm_config["deployment_name"],
-            messages=[]
-            )
-        response = completion.to_json()
+        system, user, ins_set = self.__parse_prompts("summarization")
+        prompt_text = system + user + str(ins_set)
+        conversation = [
+            {"role":"system","content":prompt_text},
+            {"role":"user","content":data}
+        ]
+        respone = self.client.chat.completions.create(
+                                                        model = self.llm_config["deployment_name"],
+                                                        messages=conversation)
+        print(respone.choices[0].message.content)
+        return respone.choices[0].message.content
+    
 
+    def generate_topics_with_summary(self,data="",headers=""):
+        self.__init_llm_engine(self.llm_engine)
+        system, user, ins_set = self.__parse_prompts("topic_extraction")
+        user  = user.replace("##prompts","{headers}")
+        prompt_text = system + user + str(ins_set)
+        conversation = [
+            {"role":"system","content":prompt_text},
+            {"role":"user","content":data}
+        ]
+        respone = self.client.chat.completions.create(
+                                                        model = self.llm_config["deployment_name"],
+                                                        messages=conversation)
+        print(respone.choices[0].message.content)
+        return respone.choices[0].message.content
 
     def __create_system_prompts():
         pass

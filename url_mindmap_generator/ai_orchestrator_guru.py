@@ -21,10 +21,11 @@ class AI_Orchestrator:
         with open(file = file_name,mode = "a") as f:
             f.write(self.content)
             f.write("\nHeadings from Web Parser for Propmts:\n")
-            f.write(self.heading_json)
+            f.write(json.dumps(self.heading_json))
 
     def generate_content_JSON(self,heading_json,links_json,content) -> json:
-        
+        content_JSON = {}
+        content_JSON["name"] = "CONTENT"
         # initialize clean content
         self.heading_json = heading_json
         self.links_json = links_json
@@ -37,20 +38,18 @@ class AI_Orchestrator:
         self.store_raw_content()
 
         ##Generate Page Summary
-        self.generate_page_summary()
+        page_summary = self.generate_page_summary()
+        content_JSON["summary"] = page_summary
 
+        return content_JSON    
 
     def generate_page_summary(self):
-        self.llm.generate_llm_summary()
-        # Take 
-        #   Header JSON (for prompts)  
-        #   Cleaned content as input
-        # Go to Open AI Plugin (Configurable)
-        # Generate Page summary
+        page_summary = self.llm.generate_llm_summary(self.content)
+        return page_summary
 
 
     def generate_topics_with_summary(self):
-        pass
+        page_summary = self.llm
 
     def generate_subtopics_with_summary(self):
         pass
@@ -58,7 +57,3 @@ class AI_Orchestrator:
     def generate_response_json(self):
         pass
 
-
-if __name__ == "__main__":
-    ll = AI_Orchestrator("gpt35")
-    ll.generate_page_summary()
