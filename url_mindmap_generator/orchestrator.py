@@ -17,7 +17,8 @@ class Orchestrator():
     def generate_mindmap(self,url, user_prompt):
         scrapper_object = ws.web_scrapper()
         head_json,url_json, content  = scrapper_object.scrape_website(url)
-        aiog = og.AI_Orchstrator(heading_json=head_json,links_json=url_json,content=content)
+        aiog = og.AI_Orchestrator("gpt35")
+        self.content_json = aiog.generate_content_JSON(heading_json=head_json,links_json=url_json,content=content)
         # ai_skills = ai.create_content(head_json, user_prompt, web_content)
         # ai_skills.generate_subtopics(head_json, user_prompt)
         return self.content_json

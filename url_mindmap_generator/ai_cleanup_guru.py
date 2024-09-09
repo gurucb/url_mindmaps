@@ -3,10 +3,11 @@ import cleantext as c
 
 class DataCleanup:
     content = None
-    def __init__(self,content) -> None:
-        self.content = content
-
+    type = None
+    def __init__(self) -> None:
+        type = "Text Cleanup"
     def cleanup(self,content) -> str:
+        self.content = content
         self.content = c.clean(
                                 content,
                                 extra_spaces=True,

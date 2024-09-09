@@ -57,37 +57,91 @@ export default function Home() {
                         text: "main text",
                         sub_topics: [
                             {
-                                name: "first topic",
-                                text: "text",
+                                name: "Design for business requirements",
+                                text: "Designing for the intended utility and goals specified by business requirements",
                                 sub_topics: [
                                     {
-                                        name: "first sub topic",
+                                        name: "Gathering business requirements",
                                         text: "First sub topic text"
                                     },
                                     {
-                                        name: "second sub topic",
+                                        name: "Process outcome requirements",
                                         text: "Second sub topic text"
                                     },
                                     {
-                                        name: "third sub topic",
+                                        name: "Quantifying success",
                                         text: "Third sub topic text"
                                     }
                                 ]
                             },
                             {
-                                name: "Second topic",
-                                text: "text",
+                                name: "Design for business resilience",
+                                text: "Designing to detect, withstand, and recover from failures within an acceptable time period",
                                 sub_topics: [
                                     {
-                                        name: "Second First sub topic",
+                                        name: "Building resiliency and recovery mechanisms",
                                         text: "Second First sub topic text"
                                     },
                                     {
-                                        name: "Second second sub topic",
+                                        name: "Adding redundancy layers",
                                         text: "Second second topic text"
                                     },
                                     {
-                                        name: "Second Third sub topic",
+                                        name: "Automating self-healing capabilities",
+                                        text: "Second Third topic text"
+                                    }
+                                ]
+                            },
+                            {
+                                name: "Design for business recovery",
+                                text: "Designing to detect, withstand, and recover from failures within an acceptable time period",
+                                sub_topics: [
+                                    {
+                                        name: "Structured and tested recovery plans",
+                                        text: "Second First sub topic text"
+                                    },
+                                    {
+                                        name: "Data layer strategies for repair",
+                                        text: "Second second topic text"
+                                    },
+                                    {
+                                        name: "Observable systems and active reliability failures",
+                                        text: "Second Third topic text"
+                                    }
+                                ]
+                            },
+                            {
+                                name: "Design for business recovery",
+                                text: "Designing to detect, withstand, and recover from failures within an acceptable time period",
+                                sub_topics: [
+                                    {
+                                        name: "Structured and tested recovery plans",
+                                        text: "Second First sub topic text"
+                                    },
+                                    {
+                                        name: "Data layer strategies for repair",
+                                        text: "Second second topic text"
+                                    },
+                                    {
+                                        name: "Observable systems and active reliability failures",
+                                        text: "Second Third topic text"
+                                    }
+                                ]
+                            },
+                            {
+                                name: "Design for business recovery",
+                                text: "Designing to detect, withstand, and recover from failures within an acceptable time period",
+                                sub_topics: [
+                                    {
+                                        name: "Structured and tested recovery plans",
+                                        text: "Second First sub topic text"
+                                    },
+                                    {
+                                        name: "Data layer strategies for repair",
+                                        text: "Second second topic text"
+                                    },
+                                    {
+                                        name: "Observable systems and active reliability failures",
                                         text: "Second Third topic text"
                                     }
                                 ]
