@@ -41,8 +41,11 @@ class AI_Orchestrator:
         ##Generate Page Summary
         page_summary = self.generate_page_summary()
         topic_summary = self.generate_topics_with_summary()
-        self.parse_response(topic_summary)
+        self.content_JSON=self.parse_response(topic_summary)
         self.content_JSON["page_summary"] = page_summary
+
+        self.content_JSON = json.dumps(self.content_JSON, indent=4)
+        print(self.content_JSON)
 
         return self.content_JSON    
 
@@ -55,7 +58,36 @@ class AI_Orchestrator:
         topic_summary = self.llm.generate_topics(self.content,self.heading_json)
         return topic_summary
 
-    def parse_response(self,topic_response):
-        pass
-    # Kirthika to help write this code to map output (Topic_Response) to JSON output that Kumud needs.
+    def parse_response(self, topic_response):
+        """
+        This method parses the topic_response and converts it into the desired JSON structure.
+        
+        :param topic_response: Parsed JSON response (Python dict) from the LLM.
+        :return: A JSON structure in the format you need.
+        """
+        result = {
+            "page_summary": "",  
+            "name": "",          # Leaving it blank for now
+            "text": "",          # Leaving it blank for now
+            "sub_topics": []
+        }
+
+        # Iterate through the topic_response and build the structure
+        for topic, details in topic_response.items():
+            sub_topic = {
+                "name": topic,
+                "text": details.get("description", ""),  
+                "sub_topics": []
+            }
+
+            for sub in details.get("subtopics", []):
+                sub_topic["sub_topics"].append({
+                    "name": sub,
+                    "text": ""  # Leaving subtopic text empty for now
+                })
+
+            result["sub_topics"].append(sub_topic)
+
+        return result
+        
 
