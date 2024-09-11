@@ -49,7 +49,7 @@ class LLMOps:
         respone = self.client.chat.completions.create(
                                                         model = self.llm_config["deployment_name"],
                                                         messages=conversation)
-        print(respone.choices[0].message.content)
+       
         return respone.choices[0].message.content
     
 
@@ -63,12 +63,19 @@ class LLMOps:
             {"role":"system","content":prompt_text},
             {"role":"user","content":data}
         ]
-        response = self.client.chat.completions.create(
-                                                        model = self.llm_config["deployment_name"],
-                                                        messages=conversation,
-                                                        max_tokens=3500,temperature=0.2)
-        chat_response =   json.loads(str(response.choices[0].message.content).replace("json","").replace("`",""))
-
+        chat_response=self.plugin_llm(conversation)
+        return chat_response
+    
+    def generate_topics_2(self,data="",json_template=""):
+        self.__init_llm_engine(self.llm_engine)
+        system, user, ins_set = self.__parse_prompts("topic_extraction_2")
+        user  = user.replace("##prompts",json_template)
+        prompt_text = system + user 
+        conversation = [
+            {"role":"system","content":prompt_text},
+            {"role":"user","content":data}
+        ]
+        chat_response=self.plugin_llm(conversation)
         return chat_response
 
     def parse_headers_for_prompts(self,headers):
@@ -77,3 +84,11 @@ class LLMOps:
             headings = headings + str(head["text"][0])+"\n"
         return headings
         
+
+    def plugin_llm(self,conversation):
+        response = self.client.chat.completions.create(
+                                                        model = self.llm_config["deployment_name"],
+                                                        messages=conversation,
+                                                        max_tokens=3500,temperature=0.2)
+        chat_response =   json.loads(str(response.choices[0].message.content).replace("json","").replace("`","")) 
+        return chat_response   
