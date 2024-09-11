@@ -6,6 +6,8 @@ import * as d3 from "d3";
 import Head from "next/head";
 export default function RenderMap({ data }) {
     useEffect(() => {
+
+        console.log(data);
         console.log("useEffect is running");
 
         // Clear any existing SVG content
@@ -23,7 +25,7 @@ export default function RenderMap({ data }) {
             .append("g")
             .attr("transform", `translate(${margin.left},${margin.top})`);
 
-        const tree = d3.tree().size([height, width / 1.5]);
+        const tree = d3.tree().size([height, width / 2]);
 
         const root = d3.hierarchy(data, d => d.sub_topics);
 
@@ -33,11 +35,14 @@ export default function RenderMap({ data }) {
         // const svgWidth = Math.max(...root.descendants().map(d => d.y)) + margin.right + 100; // Add extra margin
         d3.select("#mindmap-svg").attr("width", window.innerWidth);
 
+        const colorScale = d3.scaleOrdinal(d3.schemeSet3);
+
         // Tooltip div
         const tooltip = d3.select("#mindmap")
             .append("div")
             .attr("class", "tooltip")
             .style("opacity", 0);
+
 
         // Draw links
         const link = svg
@@ -82,9 +87,9 @@ export default function RenderMap({ data }) {
         // Add circle background for nodes
         node.append("circle")
             .attr("r", 15)
-            .style("fill", "#007bff")
-            .style("stroke", "#fff")
-            .style("stroke-width", "2px");
+            .style("fill", (d) => colorScale(d.depth))
+            .style("stroke", "#000")
+            .style("stroke-width", "0.5px");
 
         const linkIconBase64 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICA8cGF0aCBkPSJNMTIgNGwtMi0yTDYuOTUgMTMuOTZMMjAuMyA2Ljc1bDEuMjUgMS4yNWwxLjI1LTEuMjVMMi4yMCA4LjUsNCAxNiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtY29sb3I9IiMzMzMiLz48L3N2Zz4=";
 
@@ -109,19 +114,49 @@ export default function RenderMap({ data }) {
             .attr("x", (d) => (d.children ? -20 : 20))
             .style("text-anchor", (d) => (d.children ? "end" : "start"))
             .style("font", "20px sans-serif")
-            .style("fill", "#fff")
+            .style("font-weight", "bolder")
+            //.style("fill", "#fff")
+            //.style("stroke", "#000") // Add black outline
+            //.style("stroke-width", "1px") 
+            //.style("text-shadow", "1px 1px 2px rgba(0, 0, 0, 0.5)")
             .text((d) => d.data.name)
-            .each(function () {
+            .each(function (d) {
                 const bbox = this.getBBox();
-                d3.select(this.parentNode).insert("rect", ":first-child")
-                    .attr("x", bbox.x - 5)
-                    .attr("y", bbox.y - 10)
-                    .attr("width", bbox.width + 10)
-                    .attr("height", bbox.height + 20)
-                    .style("fill", "#343a40")
-                    .style("stroke", "#495057")
-                    .style("stroke-width", "1px");
+                const nodeColor = colorScale(d.depth);
+                function getContrastYIQ(hexcolor) {
+                    hexcolor = hexcolor.replace("#", "");
+                    const r = parseInt(hexcolor.substr(0, 2), 16);
+                    const g = parseInt(hexcolor.substr(2, 2), 16);
+                    const b = parseInt(hexcolor.substr(4, 2), 16);
+                    const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+                    return yiq >= 128 ? "#333333" : "white";
+                }
+
+                const textColor = getContrastYIQ(nodeColor);
+
+                d3.select(this)
+                    .style("fill", textColor);
+                ///.style("stroke", textColor === "white" ? "#000" : "#fff");
+
+                if (textColor !== "#333333") {
+                    d3.select(this).style("text-shadow", "1px 1px 2px rgba(0, 0, 0, 0.5)");
+                };
+
+                if (d.depth < 2) {
+                    d3.select(this.parentNode).insert("rect", ":first-child")
+                        .attr("x", bbox.x - 10)
+                        .attr("y", bbox.y - 15)
+                        .attr("width", bbox.width + 20)
+                        .attr("height", bbox.height + 30)
+                        .attr("rx", 10) // Rounded edges
+                        .attr("ry", 10) // Rounded edges
+                        .style("fill", nodeColor)
+                        .style("stroke", "#495057")
+                        .style("stroke-width", "1px")
+                        .style("box-shadow", "0 4px 8px rgba(0, 0, 0, 0.1)");
+                }
             });
+
 
         node
             .append("title")
@@ -138,7 +173,7 @@ export default function RenderMap({ data }) {
 
         console.log("Mind map created");
 
-    }, [data]); 
+    }, [data]);
     return (
         <main>
             <Head>

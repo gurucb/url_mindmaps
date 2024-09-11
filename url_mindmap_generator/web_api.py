@@ -5,10 +5,12 @@
 
 from orchestrator import Orchestrator
 import flask
+from flask_cors import CORS
 
 class web_api():
     def __init__(self):
         self.app = flask.Flask(__name__)
+        CORS(self.app) 
         self.setup_routes()
         self.app.run(port=5001)
 

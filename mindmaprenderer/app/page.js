@@ -43,8 +43,7 @@ export default function Home() {
     const openURLInNewTab = (url) => {
         window.open(`http://${url}`, '_blank', 'noopener,noreferrer');
     };
-
-
+    /*
     const handleSubmit = (event) => {
         event.preventDefault();
         if (isValidURL(inputURL)) {
@@ -57,91 +56,37 @@ export default function Home() {
                         text: "main text",
                         sub_topics: [
                             {
-                                name: "Design for business requirements",
-                                text: "Designing for the intended utility and goals specified by business requirements",
+                                name: "first topic",
+                                text: "text",
                                 sub_topics: [
                                     {
-                                        name: "Gathering business requirements",
+                                        name: "first sub topic",
                                         text: "First sub topic text"
                                     },
                                     {
-                                        name: "Process outcome requirements",
+                                        name: "second sub topic",
                                         text: "Second sub topic text"
                                     },
                                     {
-                                        name: "Quantifying success",
+                                        name: "third sub topic",
                                         text: "Third sub topic text"
                                     }
                                 ]
                             },
                             {
-                                name: "Design for business resilience",
-                                text: "Designing to detect, withstand, and recover from failures within an acceptable time period",
+                                name: "Second topic",
+                                text: "text",
                                 sub_topics: [
                                     {
-                                        name: "Building resiliency and recovery mechanisms",
+                                        name: "Second First sub topic",
                                         text: "Second First sub topic text"
                                     },
                                     {
-                                        name: "Adding redundancy layers",
+                                        name: "Second second sub topic",
                                         text: "Second second topic text"
                                     },
                                     {
-                                        name: "Automating self-healing capabilities",
-                                        text: "Second Third topic text"
-                                    }
-                                ]
-                            },
-                            {
-                                name: "Design for business recovery",
-                                text: "Designing to detect, withstand, and recover from failures within an acceptable time period",
-                                sub_topics: [
-                                    {
-                                        name: "Structured and tested recovery plans",
-                                        text: "Second First sub topic text"
-                                    },
-                                    {
-                                        name: "Data layer strategies for repair",
-                                        text: "Second second topic text"
-                                    },
-                                    {
-                                        name: "Observable systems and active reliability failures",
-                                        text: "Second Third topic text"
-                                    }
-                                ]
-                            },
-                            {
-                                name: "Design for business recovery",
-                                text: "Designing to detect, withstand, and recover from failures within an acceptable time period",
-                                sub_topics: [
-                                    {
-                                        name: "Structured and tested recovery plans",
-                                        text: "Second First sub topic text"
-                                    },
-                                    {
-                                        name: "Data layer strategies for repair",
-                                        text: "Second second topic text"
-                                    },
-                                    {
-                                        name: "Observable systems and active reliability failures",
-                                        text: "Second Third topic text"
-                                    }
-                                ]
-                            },
-                            {
-                                name: "Design for business recovery",
-                                text: "Designing to detect, withstand, and recover from failures within an acceptable time period",
-                                sub_topics: [
-                                    {
-                                        name: "Structured and tested recovery plans",
-                                        text: "Second First sub topic text"
-                                    },
-                                    {
-                                        name: "Data layer strategies for repair",
-                                        text: "Second second topic text"
-                                    },
-                                    {
-                                        name: "Observable systems and active reliability failures",
+                                        name: "Second Third sub topic",
                                         text: "Second Third topic text"
                                     }
                                 ]
@@ -167,6 +112,45 @@ export default function Home() {
             setPageSummary("The provided URL is invalid.");
         }
     };
+    */
+
+   const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (isValidURL(inputURL)) {
+        try {
+            // Make the API call
+            const response = await fetch('http://127.0.0.1:5001/get_mindmap_data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    url: inputURL,
+                    user_prompt: userPrompt
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            console.log(response);
+            const data_ = await response.json();
+            const data = JSON.parse(data_);
+            console.log(data);
+            // Set the data and page summary states
+            setData(data);
+            setPageSummary(data.page_summary);
+        } catch (error) {
+            console.error('An error occurred:', error);
+            setPageSummary('An error occurred while fetching data.');
+        }
+    } else {
+        console.error('Invalid URL');
+        setPageSummary('The provided URL is invalid.');
+    }
+};
+
 
     return (
         <div className={styles.container}>
@@ -203,53 +187,50 @@ export default function Home() {
                     `}
                 </style>
             </Head>
-            <div className={styles.inputSection}>
-                <h1>Mind Map Input</h1>
-                <form onSubmit={handleSubmit}>
-                    <textarea className={styles.textarea}
-                        name="inputURL"
-                        value={inputURL}
-                        onChange={handleInputChange}
-                        placeholder="Enter url here..."
-                    ></textarea>
-                    <textarea className={styles.textarea}
-                        name="userPrompt"
-                        value={userPrompt}
-                        onChange={handleInputChange}
-                        placeholder="Enter prompt here..."
-                    ></textarea>
-                    <button className={styles.button} type="submit">Render Mind Map</button>
-                </form>
-                {pageSummary && (
-                    <div className={styles.pageSummary}>
-                        <h2>Page Summary</h2>
-                        <p>{pageSummary}</p>
-                    </div>
-                )}
-                {data && data.URLS && (
-                    <div className={styles.urlBox}>
-                        <h2>Related URLs</h2>
-                        <ul>
-                            {data.URLS.map((url, index) => (
-                                <li key={index}>
-                                    <a
-                                        href={`http://${url}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            handleURLClick(url);
-                                        }}
-                                    >
-                                        <i onClick={() => openURLInNewTab(url)} className="fas fa-external-link-alt"></i>
-                                        {url}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                )}
+            <div className={styles.inputRow}>
+                <textarea className={styles.textarea}
+                    name="inputURL"
+                    value={inputURL}
+                    onChange={handleInputChange}
+                    placeholder="Enter url here..."
+                ></textarea>
+                <textarea className={styles.textarea}
+                    name="userPrompt"
+                    value={userPrompt}
+                    onChange={handleInputChange}
+                    placeholder="Enter prompt here..."
+                ></textarea>
+                <button className={styles.button} type="submit" onClick={handleSubmit}>Render Mind Map</button>
             </div>
+            {data && data.URLS && (
+                <div className={styles.urlBox}>
+                    <h2>Related URLs</h2>
+                    <ul>
+                        {data.URLS.map((url, index) => (
+                            <li key={index}>
+                                <a
+                                    href={`http://${url}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        handleURLClick(url);
+                                    }}
+                                >
+                                    <i onClick={() => openURLInNewTab(url)} className="fas fa-external-link-alt"></i>
+                                    {url}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
+            {pageSummary && (
+                <div className={styles.pageSummary}>
+                    <h2>Page Summary</h2>
+                    <p>{pageSummary}</p>
+                </div>
+            )}
             <div className={styles.mapSection}>
                 {data && <RenderMap data={data} />}
             </div>
