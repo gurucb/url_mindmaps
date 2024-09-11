@@ -58,39 +58,7 @@ class AI_Orchestrator:
         topic_summary = self.llm.generate_topics(self.content,self.heading_json)
         return topic_summary
 
-    # def parse_response(self, topic_response):
-    #     """
-    #     This method parses the topic_response and converts it into the desired JSON structure.
-        
-    #     :param topic_response: Parsed JSON response (Python dict) from the LLM.
-    #     :return: A JSON structure in the format you need.
-    #     """
-    #     result = {
-    #         "page_summary": "",  
-    #         "name": "",          # Leaving it blank for now
-    #         "text": "",          # Leaving it blank for now
-    #         "sub_topics": []
-    #     }
-
-    #     # Iterate through the topic_response and build the structure
-    #     for topic, details in topic_response.items():
-    #         sub_topic = {
-    #             "name": topic,
-    #             "text": details.get("description", ""),  
-    #             "sub_topics": []
-    #         }
-
-    #         for sub, sub_desc in details.get("subtopics", {}).items():
-    #             sub_topic["sub_topics"].append({
-    #                 "name": sub,
-    #                 "text": sub_desc  # Assigning the subtopic description from the LLM response
-    #             })
-
-    #         result["sub_topics"].append(sub_topic)
-
-    #     return result
-    
-
+   
     def parse_response(self, topic_response):
         """
         This method parses the topic_response and converts it into the desired JSON structure.
@@ -114,23 +82,39 @@ class AI_Orchestrator:
             }
 
             subtopics = details.get("subtopics", {})
-            
-            # Check if subtopics is a dictionary or list and handle appropriately
+
+            # Check if subtopics is a dictionary
             if isinstance(subtopics, dict):
-                # Iterate through subtopics if it's a dictionary
                 for sub_name, sub_text in subtopics.items():
                     sub_topic["sub_topics"].append({
                         "name": sub_name,
                         "text": sub_text  # Assigning the subtopic description
                     })
+            # Check if subtopics is a list
             elif isinstance(subtopics, list):
-                # If subtopics is a list, iterate over the list
                 for subtopic in subtopics:
-                    sub_topic["sub_topics"].append({
-                        "name": subtopic.get("name", ""),
-                        "text": subtopic.get("text", "")
-                    })
-            
+                    # Handle case where subtopic is a dictionary
+                    if isinstance(subtopic, dict):
+                        sub_topic["sub_topics"].append({
+                            "name": subtopic.get("name", ""),
+                            "text": subtopic.get("text", "")
+                        })
+                    # Handle case where subtopic is a string
+                    elif isinstance(subtopic, str):
+                        sub_topic["sub_topics"].append({
+                            "name": subtopic,
+                            "text": ""  # No additional text for string subtopics
+                        })
+            # Handle case where subtopics is a string (edge case)
+            elif isinstance(subtopics, str):
+                sub_topic["sub_topics"].append({
+                    "name": subtopics,
+                    "text": ""
+                })
+
             result["sub_topics"].append(sub_topic)
 
         return result
+
+
+        
