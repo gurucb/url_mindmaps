@@ -40,14 +40,18 @@ class AI_Orchestrator:
 
         ##Generate Page Summary
         page_summary = self.generate_page_summary()
+        # 0 shot call to LLM
         topic_summary = self.generate_topics_with_summary()
         self.content_JSON=self.parse_response(topic_summary)
         self.content_JSON["page_summary"] = page_summary
 
         self.content_JSON = json.dumps(self.content_JSON, indent=4)
-        print(self.content_JSON)
+        # 1 shot call to LLM
 
-        return self.content_JSON    
+        self.content_JSON2=self.llm.generate_topics_2(self.content,self.content_JSON)
+        self.content_JSON2=json.dumps(self.content_JSON2, indent=4)
+        print(self.content_JSON2)
+        return self.content_JSON2
 
     def generate_page_summary(self):
         page_summary = self.llm.generate_summary(self.content)

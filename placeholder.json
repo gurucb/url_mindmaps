@@ -1,0 +1,102 @@
+{
+    "page_summary": "The document discusses the importance of reliability and design principles in ensuring the resilience of workloads in distributed systems. It emphasizes the need to anticipate and handle potential failures, prioritize critical components, build resiliency and recovery mechanisms, and automate processes. Additionally, it highlights the significance of observable systems, proactive mitigation of potential failures, staying simple to avoid overengineering, and establishing standards in code implementation and deployment processes.",
+    "name": "Reliability and Design Principles in Distributed Systems",
+    "text": "The document discusses the importance of reliability and design principles in ensuring the resilience of workloads in distributed systems. It emphasizes the need to anticipate and handle potential failures, prioritize critical components, build resiliency and recovery mechanisms, and automate processes. Additionally, it highlights the significance of observable systems, proactive mitigation of potential failures, staying simple to avoid overengineering, and establishing standards in code implementation and deployment processes.",
+    "sub_topics": [
+        {
+            "name": "Design for business requirements",
+            "text": "Designing solutions that align with the business requirements and goals",
+            "sub_topics": [
+                {
+                    "name": "Gathering business requirements",
+                    "text": "Gathering and documenting the business requirements to drive technological choices and implementations"
+                },
+                {
+                    "name": "Quantifying success",
+                    "text": "Setting targets and indicators to quantify the success of the design in meeting business requirements"
+                },
+                {
+                    "name": "Maintaining resiliency",
+                    "text": "Ensuring that the design maintains resiliency while meeting the business requirements"
+                }
+            ]
+        },
+        {
+            "name": "Design for resilience",
+            "text": "Designing systems to detect, withstand, and recover from failures within an acceptable time period",
+            "sub_topics": [
+                {
+                    "name": "Building resiliency",
+                    "text": "Building resilience and recovery mechanisms to ensure continuous operation"
+                },
+                {
+                    "name": "Identifying potential failure points",
+                    "text": "Identifying potential failure points within the system and critical components"
+                },
+                {
+                    "name": "Adding redundancy layers",
+                    "text": "Incorporating redundancy layers at various application tiers to enhance resiliency"
+                }
+            ]
+        },
+        {
+            "name": "Design for recovery",
+            "text": "Designing systems to anticipate and recover from failures with minimal disruption to business objectives",
+            "sub_topics": [
+                {
+                    "name": "Structured recovery plans",
+                    "text": "Creating structured and tested recovery plans aligned with negotiated recovery targets"
+                },
+                {
+                    "name": "Ensuring data integrity",
+                    "text": "Implementing measures to ensure the integrity of data during recovery processes"
+                },
+                {
+                    "name": "Automating self-healing capabilities",
+                    "text": "Designing automation to facilitate self-healing and minimize human intervention"
+                }
+            ]
+        },
+        {
+            "name": "Design for operations",
+            "text": "Designing operations with a focus on reliability, observability, and continuous improvement",
+            "sub_topics": [
+                {
+                    "name": "Shifting left operations",
+                    "text": "Anticipating failure conditions and testing failures early in the development lifecycle"
+                },
+                {
+                    "name": "Building observable systems",
+                    "text": "Developing systems with correlated telemetry and monitoring for effective incident management"
+                },
+                {
+                    "name": "Keeping routine operations simple",
+                    "text": "Simplifying routine operations to minimize impact on system stability and reliability"
+                }
+            ]
+        },
+        {
+            "name": "Keep it simple",
+            "text": "Emphasizing simplicity in architecture, design, and operations to minimize potential failures and inefficiencies",
+            "sub_topics": [
+                {
+                    "name": "Establishing standards",
+                    "text": "Establishing and enforcing standards to maintain consistency and minimize human errors"
+                },
+                {
+                    "name": "Developing lean code",
+                    "text": "Developing code that is granular and avoids unnecessary interdependence and operations"
+                },
+                {
+                    "name": "Taking advantage of platform-provided features",
+                    "text": "Leveraging prebuilt assets and platform features to meet business targets efficiently"
+                }
+            ]
+        },
+        {
+            "name": "Additional resources",
+            "text": "Additional resources and feedback for further information and support",
+            "sub_topics": []
+        }
+    ]
+}

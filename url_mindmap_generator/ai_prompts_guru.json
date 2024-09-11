@@ -12,7 +12,7 @@
         ]
     },
     "topic_extraction":{
-        "system":"You will receive a document and a set of top-level topics. Your task is to identify generalizable topics and at least 3 related subtopics for each topic along with summary within the document that can act as top two levels in the hierarchy. ",
+        "system":"You will receive a document and a set of top-level topics. Your task is to identify generalizable topics and at least 3 related subtopics for each topic and subtopic along with summary within the document that can act as top two levels in the hierarchy. ",
         "user":"Top Level Topics: { ##prompts }",
         "example": {},
         "instructions":[
@@ -27,11 +27,14 @@
             "- Output text in JSON format"
         ]
     },
-    "sub_topic_extraction":
-    {
-        "system":"",
-        "user":"",
-        "example":"",
-        "instructions":{}
+   "topic_extraction_2":{
+        "system":"You will receive a JSON template and raw text. Your task is to identify corresponding topics from the text and fill the JSON template.",
+        "user":"JSON Template: { ##prompts }",
+        "example": {},
+        "instructions":[
+            "[Instructions]",
+            "- Topics must not be document specific",
+            "- Output text in JSON format"
+        ]
     }
 }
