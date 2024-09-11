@@ -68,7 +68,7 @@ class AI_Orchestrator:
         """
         result = {
             "page_summary": "",  
-            "name": "",          # Leaving it blank for now
+            "name": "Page Summary",          # Leaving it blank for now
             "text": "",          # Leaving it blank for now
             "sub_topics": []
         }
