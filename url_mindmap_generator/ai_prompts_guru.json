@@ -21,7 +21,7 @@
             "- Topic Labels must be as generalizable as possible.", 
             "- Topics must not be document specific",
             "- Each topic must reflect single topic instead of combination of topics",
-            "- New topics must have a level number, a short general lable, and a topic description",
+            "- New topics must have a short general lable, and a topic description",
             "- Topics must be broad enough to accomodate future topics",
             "- DO Not Generate topics outside the document",
             "- Output text in JSON format"
