@@ -11,7 +11,7 @@ class LLMOps:
     
     def __init_llm_engine(self,llm_engine):
         
-        file_path = "url_mindmap_generator\\ai_llm_engines_config.json"
+        file_path = "./ai_llm_engines_config.json"
         with open(file_path,"r") as f:
             temp = f.read()
             self.llm_config = json.loads(temp)
@@ -23,7 +23,7 @@ class LLMOps:
         )
 
     def __parse_prompts(self,task):
-        file_path = "url_mindmap_generator\\ai_prompts_guru.json"
+        file_path = "./ai_prompts_guru.json"
         with open(file_path,"r") as f:
             temp = f.read()
             self.prompts = json.loads(temp)
