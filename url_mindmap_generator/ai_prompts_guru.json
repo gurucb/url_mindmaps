@@ -36,5 +36,15 @@
             "- Topics must not be document specific",
             "- Output text in JSON format"
         ]
+    },
+    "language_translation":{
+        "system":"You will receive a JSON template. Your task is to convert the JSON template to : { ##prompts language}. Dont add anything from your end. Just convert the given json to  : { ##prompts language}. While converting, don't miss any section in the given JSON", 
+        "user":"JSON Template: { ##prompts }",
+        "example": {},
+        "instructions":[
+            "[Instructions]",
+            "- JSON template should be converted to prompted language",
+            "- Output text should be in proper JSON format"
+        ]
     }
 }

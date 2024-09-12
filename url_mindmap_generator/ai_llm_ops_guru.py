@@ -77,6 +77,19 @@ class LLMOps:
         ]
         chat_response=self.plugin_llm(conversation)
         return chat_response
+    
+    def language_conversion(self,data="",json_template="", user_prompt=""):
+        self.__init_llm_engine(self.llm_engine)
+        system, user, ins_set = self.__parse_prompts("language_translation")
+        system=system.replace("##prompts", user_prompt)
+        user  = user.replace("##prompts",json_template)
+        prompt_text = system + user 
+        conversation = [
+            {"role":"system","content":prompt_text},
+            {"role":"user","content":data}
+        ]
+        chat_response=self.plugin_llm(conversation)
+        return chat_response
 
     def parse_headers_for_prompts(self,headers):
         headings = ""

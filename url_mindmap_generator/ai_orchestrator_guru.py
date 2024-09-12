@@ -24,7 +24,7 @@ class AI_Orchestrator:
             f.write("\nHeadings from Web Parser for Propmts:\n")
             f.write(json.dumps(self.heading_json))
 
-    def generate_content_JSON(self,heading_json,links_json,content) -> json:
+    def generate_content_JSON(self,heading_json,links_json,content,user_prompt) -> json:
 
         
         # initialize clean content
@@ -51,7 +51,16 @@ class AI_Orchestrator:
         self.content_JSON2=self.llm.generate_topics_2(self.content,self.content_JSON)
         self.content_JSON2=json.dumps(self.content_JSON2, indent=4)
         print(self.content_JSON2)
-        return self.content_JSON2
+
+        # 2 shot call to LLM to convert to French
+        if user_prompt != "default":
+            self.content_JSON3 = self.llm.language_conversion(self.content, self.content_JSON2, user_prompt)
+            self.content_JSON3 = json.dumps(self.content_JSON3, indent=4)
+            decoded_response=json.loads(self.content_JSON3)
+            print(json.dumps(decoded_response, ensure_ascii=False, indent=4))
+            return decoded_response
+        else:
+            return self.content_JSON2
 
     def generate_page_summary(self):
         page_summary = self.llm.generate_summary(self.content)
