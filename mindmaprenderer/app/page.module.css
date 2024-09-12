@@ -16,6 +16,7 @@
     padding: 10px;
     border-radius: 5px;
     background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .textarea {
@@ -24,10 +25,14 @@
     height: 50px; /* Adjusted height to half */
     background-color: white;
     color: black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .button {
     height: 50px; /* Adjusted height to match the textarea */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: black;
+    background-color: white;
 }
 
 .pageSummary {
@@ -37,6 +42,7 @@
     border-radius: 5px;
     background-color: white;
     color: black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .urlBox {
@@ -45,6 +51,7 @@
     padding: 10px;
     border-radius: 5px;
     background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .urlBox ul {

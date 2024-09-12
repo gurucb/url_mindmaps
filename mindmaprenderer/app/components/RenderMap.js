@@ -111,8 +111,8 @@ export default function RenderMap({ data }) {
         const text = node
             .append("text")
             .attr("dy", "0.35em")
-            .attr("x", (d) => (d.children ? -20 : 20))
-            .style("text-anchor", (d) => (d.children ? "end" : "start"))
+            .attr("x", (d) => (d.depth!=2 ? -20 : 20))
+            .style("text-anchor", (d) => (d.depth!=2 ? "end" : "start"))
             .style("font", "20px sans-serif")
             .style("font-weight", "bolder")
             //.style("fill", "#fff")
