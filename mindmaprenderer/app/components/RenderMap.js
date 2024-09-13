@@ -32,7 +32,7 @@ export default function RenderMap({ data }) {
         tree(root);
 
         // Calculate SVG width dynamically based on the content
-        const svgWidth = Math.max(Math.max(...root.descendants().map(d => d.y)), width) + margin.left; // Add extra margin
+        const svgWidth = Math.max(Math.max(...root.descendants().map(d => d.y)), width) + margin.left + 50; // Add extra margin
         const svgHeight = Math.max(height, d3.max(root.descendants(), d => d.x)) + margin.bottom;
         d3.select("#mindmap-svg").attr("width", svgWidth).attr("height", svgHeight);
 
@@ -114,7 +114,7 @@ export default function RenderMap({ data }) {
             .attr("dy", "0.35em")
             .attr("x", (d) => (d.depth!=2 ? -20 : 20))
             .style("text-anchor", (d) => (d.depth!=2 ? "end" : "start"))
-            .style("font", "20px sans-serif")
+            .style("font", "16px sans-serif")
             .style("font-weight", "bolder")
             //.style("fill", "#fff")
             //.style("stroke", "#000") // Add black outline
@@ -146,9 +146,9 @@ export default function RenderMap({ data }) {
                 if (d.depth < 2) {
                     d3.select(this.parentNode).insert("rect", ":first-child")
                         .attr("x", bbox.x - 10)
-                        .attr("y", bbox.y - 15)
-                        .attr("width", bbox.width + 20)
-                        .attr("height", bbox.height + 30)
+                        .attr("y", bbox.y - 10)
+                        .attr("width", bbox.width + 15)
+                        .attr("height", bbox.height + 20)
                         .attr("rx", 10) // Rounded edges
                         .attr("ry", 10) // Rounded edges
                         .style("fill", nodeColor)

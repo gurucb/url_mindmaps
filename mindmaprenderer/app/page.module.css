@@ -1,10 +1,13 @@
+/* page.module.css */
 .container {
     display: flex;
     flex-direction: column;
     height: 100vh;
     padding: 20px;
     overflow-y: auto;
-    overflow-x: hidden
+    overflow-x: hidden;
+    background-color: #00bcd4;
+    /*background-color: #e8f5e9; /* Light green background */
 }
 
 .loadingContainer {
@@ -21,8 +24,8 @@
 }
 
 .loadingCircle {
-    border: 8px solid #f3f3f3;
-    border-top: 8px solid #3498db;
+    border: 8px solid #dcedc8; /* Light green border */
+    border-top: 8px solid #43a047; /* Darker green color for the spinner */
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -41,120 +44,143 @@
 
 .pageSummary {
     margin-top: 20px;
+    border: 2px solid #cddc39; /* Lively lime green border */
     padding: 20px;
-    background-color: #f9f9f9;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #f1f8e9; /* Light greenish beige background */
+    color: #33691e; /* Deep forest green text color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for emphasis */
 }
 
     .pageSummary h2 {
         font-family: 'Arial', sans-serif;
         font-size: 24px;
-        color: #333;
+        color: #33691e; /* Deep forest green color for headings */
         margin-bottom: 10px;
     }
 
     .pageSummary p {
         font-family: 'Arial', sans-serif;
         font-size: 16px;
-        color: #666;
+        color: #2e7d32; /* Slightly lighter green for text */
     }
+
 
 .inputRow {
     display: flex;
     flex-direction: row;
     align-items: center;
     margin-bottom: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #4caf50; /* Green border */
     padding: 10px;
     border-radius: 5px;
-    background-color: #f9f9f9;
+    background-color: #a5d6a7; /* Light green background for input section */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .textarea {
     flex: 1;
     margin-right: 10px;
-    height: 50px; /* Adjusted height to half */
-    background-color: white;
-    color: black;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 60px; /* Increased height for better appearance */
+    background-color: #d0f0c0; /* Brighter light green background */
+    color: #2e7d32; /* Brighter green text color */
+    font-size: 18px; /* Increased font size */
+    line-height: 1.5; /* Adjust line height */
+    padding: 10px; /* Add padding for text inside the textarea */
+    border: 1px solid #2e7d32; /* Border color to match text color */
+    border-radius: 6px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for emphasis */
+    overflow: hidden;
 }
+
+    .textarea:focus {
+        outline: none; /* Remove default outline */
+        border-color: #388e3c; /* Darker green border on focus */
+        box-shadow: 0 0 8px rgba(0, 128, 0, 0.5); /* Shadow effect on focus */
+    }
+
 
 .button {
-    height: 50px; /* Adjusted height to match the textarea */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: black;
-    background-color: white;
+    height: 60px; /* Increased height */
+    padding: 0 20px; /* Add horizontal padding */
+    background-color: #ff9800; /* Warm orange background */
+    color: white; /* White text color */
+    border: none; /* Remove default border */
+    border-radius: 6px; /* Slightly larger border-radius for a rounded look */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 18px; /* Increase font size */
+    font-weight: bold; /* Bold text for better visibility */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Larger shadow for emphasis */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition effects */
 }
 
-.pageSummary {
-    margin-top: 20px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: white;
-    color: black;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+    .button:hover {
+        background-color: #f57c00; /* Darker orange on hover */
+        transform: scale(1.05); /* Slight scale effect on hover */
+    }
 
 .urlBox {
     margin-top: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #2196f3; /* Blue border */
     padding: 10px;
     border-radius: 5px;
-    background-color: #f9f9f9;
+    background-color: #bbdefb; /* Light blue background */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.urlBox ul {
-    list-style-type: none;
-    padding: 0;
-}
+    .urlBox h2 {
+        margin-top: 0;
+        color: #1976d2; /* Blue text color */
+    }
 
-.urlBox li {
-    margin-bottom: 10px;
-}
+    .urlBox ul {
+        list-style-type: none;
+        padding: 0;
+    }
 
-.urlBox a {
-    text-decoration: none;
-    color: #0070f3;
-}
+    .urlBox li {
+        margin-bottom: 10px;
+    }
 
-.urlBox a:hover {
-    text-decoration: underline;
-}
+    .urlBox a {
+        text-decoration: none;
+        color: #2196f3; /* Blue color for links */
+    }
 
-.urlBox i {
-    margin-right: 5px;
-    cursor: pointer;
-}
+        .urlBox a:hover {
+            text-decoration: underline;
+            color: #1976d2; /* Darker blue on hover */
+        }
+
+    .urlBox i {
+        margin-right: 5px;
+        cursor: pointer;
+    }
 
 .mapSection {
     flex: 1;
     margin-top: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #f06292; /* Bright pink border */
     padding: 10px;
     border-radius: 5px;
-    background-color: #f9f9f9;
-    
+    background-color: #fce4ec; /* Very light pink background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for emphasis */
 }
 
-/* Custom scrollbar styles */
 .mapSection::-webkit-scrollbar {
-    width: 8px; /* Adjust the width of the vertical scrollbar */
-    height: 8px; /* Adjust the height of the horizontal scrollbar */
+    width: 8px;
 }
 
 .mapSection::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Background of the scrollbar track */
+    background: #f1f1f1;
 }
 
 .mapSection::-webkit-scrollbar-thumb {
-    background: #888; /* Color of the scrollbar thumb */
-    border-radius: 10px; /* Rounded corners for the scrollbar thumb */
+    background: #ec407a; /* More vivid pink color for scrollbar thumb */
+    border-radius: 10px;
 }
 
 .mapSection::-webkit-scrollbar-thumb:hover {
-    background: #555; /* Color of the scrollbar thumb on hover */
+    background: #d81b60; /* Even brighter pink on hover */
 }
+

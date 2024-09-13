@@ -1,0 +1,161 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: #f0f4f8;
+}
+
+.loadingContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*background-color: rgba(255, 255, 255, 0.8);*/
+    z-index: 1000;
+}
+
+.loadingCircle {
+    border: 8px solid #e0e0e0; /* Light gray border */
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.pageSummary {
+    margin-top: 20px;
+    padding: 20px;
+    /*background-color: #f9f9f9;*/
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+    .pageSummary h2 {
+        font-family: 'Arial', sans-serif;
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .pageSummary p {
+        font-family: 'Arial', sans-serif;
+        font-size: 16px;
+        color: #666;
+    }
+
+.inputRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    /*background-color: #f9f9f9;*/
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.textarea {
+    flex: 1;
+    margin-right: 10px;
+    height: 50px; /* Adjusted height to half */
+    /*background-color: white;*/
+    color: black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.button {
+    height: 50px; /* Adjusted height to match the textarea */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: black;
+    /*background-color: white;*/
+}
+
+.pageSummary {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    /*background-color: white;*/
+    color: black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.urlBox {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    /*background-color: #f9f9f9;*/
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.urlBox ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.urlBox li {
+    margin-bottom: 10px;
+}
+
+.urlBox a {
+    text-decoration: none;
+    color: #0070f3;
+}
+
+.urlBox a:hover {
+    text-decoration: underline;
+}
+
+.urlBox i {
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.mapSection {
+    flex: 1;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    
+}
+
+/* Custom scrollbar styles */
+.mapSection::-webkit-scrollbar {
+    width: 8px; /* Adjust the width of the vertical scrollbar */
+    height: 8px; /* Adjust the height of the horizontal scrollbar */
+}
+
+.mapSection::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Background of the scrollbar track */
+}
+
+.mapSection::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scrollbar thumb */
+    border-radius: 10px; /* Rounded corners for the scrollbar thumb */
+}
+
+.mapSection::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color of the scrollbar thumb on hover */
+}
