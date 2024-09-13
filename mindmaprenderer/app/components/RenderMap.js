@@ -15,7 +15,7 @@ export default function RenderMap({ data }) {
 
         const margin = { top: 20, right: 120, bottom: 20, left: 120 };
         const height = window.innerHeight - margin.top - margin.bottom;
-        const width = window.innerWidth; // Initial width for SVG
+        const width = window.innerWidth - margin.left - margin.right ; // Initial width for SVG
 
         // Create SVG container
         const svg = d3
@@ -32,8 +32,9 @@ export default function RenderMap({ data }) {
         tree(root);
 
         // Calculate SVG width dynamically based on the content
-        // const svgWidth = Math.max(...root.descendants().map(d => d.y)) + margin.right + 100; // Add extra margin
-        d3.select("#mindmap-svg").attr("width", window.innerWidth);
+        const svgWidth = Math.max(Math.max(...root.descendants().map(d => d.y)), width) + margin.left; // Add extra margin
+        const svgHeight = Math.max(height, d3.max(root.descendants(), d => d.x)) + margin.bottom;
+        d3.select("#mindmap-svg").attr("width", svgWidth).attr("height", svgHeight);
 
         const colorScale = d3.scaleOrdinal(d3.schemeSet3);
 

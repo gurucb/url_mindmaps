@@ -11,6 +11,7 @@ export default function Home() {
     const [inputURL, setInputURL] = useState('');
     const [userPrompt, setUserPrompt] = useState('');
     const [pageSummary, setPageSummary] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -115,8 +116,12 @@ export default function Home() {
     */
 
    const handleSubmit = async (event) => {
-    event.preventDefault();
-
+       event.preventDefault();
+       setData(null);
+       //setInputURL('');
+       //setUserPrompt('');
+       setPageSummary('');
+    setLoading(true);
     if (isValidURL(inputURL)) {
         try {
             // Make the API call
@@ -150,6 +155,7 @@ export default function Home() {
         console.error('Invalid URL');
         setPageSummary('The provided URL is invalid.');
     }
+    setLoading(false);
 };
 
 
@@ -180,6 +186,33 @@ export default function Home() {
                         position: relative;
                     }
 
+                    .loadingContainer {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: rgba(255, 255, 255, 0.8);
+                        z-index: 1000;
+                    }
+
+                    .loadingCircle {
+                        border: 8px solid #f3f3f3;
+                        border-top: 8px solid #3498db;
+                        border-radius: 50%;
+                        width: 60px;
+                        height: 60px;
+                        animation: spin 2s linear infinite;
+                    }
+
+                    @keyframes spin {
+                        0% { transform: rotate(0deg); }
+                        100% { transform: rotate(360deg); }
+                    }
+
                     svg {
                         display: block;
                         height: 100%;
@@ -203,6 +236,12 @@ export default function Home() {
                 ></textarea>
                 <button className={styles.button} type="submit" onClick={handleSubmit}>Render Mind Map</button>
             </div>
+            {loading && (
+                <div className={styles.loadingContainer}>
+                    <div className={styles.loadingCircle}></div>
+                </div>
+            )}
+
             {data && data.URLS && (
                 <div className={styles.urlBox}>
                     <h2>Related URLs</h2>
@@ -232,9 +271,9 @@ export default function Home() {
                     <p>{pageSummary}</p>
                 </div>
             )}
-            <div className={styles.mapSection}>
+            {data && <div className={styles.mapSection}>
                 {data && <RenderMap data={data} />}
-            </div>
+            </div>}
         </div>
     );
 }
