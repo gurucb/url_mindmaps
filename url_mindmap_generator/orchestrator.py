@@ -4,7 +4,7 @@
 import web_scrapper as ws
 import ai_plugin as ai
 import mind_maps as mp
-import ai_orchestrator_guru as og
+import url_mindmap_generator.ai_orchestrator as og
 
 class Orchestrator():
 
