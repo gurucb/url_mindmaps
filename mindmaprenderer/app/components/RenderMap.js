@@ -145,7 +145,7 @@ export default function RenderMap({ data }) {
                         .style("text-anchor", d => (d.depth !== 2 ? "end" : "start"))
                         .style("font", "16px sans-serif")
                         .style("font-weight", "bolder")
-                        .text(d => d.data.name)
+                        .text(d => d.depth === 2 ? `${d.data.name} : ${d.data.text || ''}` : d.data.name)
                         .each(function (d) {
                             const bbox = this.getBBox();
                             const nodeColor = colorScale(d.depth);
@@ -184,7 +184,7 @@ export default function RenderMap({ data }) {
                     update => update
                         .attr("x", d => (d.depth !== 2 ? -20 : 20))
                         .style("text-anchor", d => (d.depth !== 2 ? "end" : "start"))
-                        .text(d => d.data.name),
+                        .text(d => d.depth === 2 ? `${d.data.name} : ${d.data.text || ''}` : d.data.name),
                     exit => exit.remove()
                 );
 
