@@ -26,7 +26,7 @@ export default function RenderMap({ data }) {
             .append("g")
             .attr("transform", `translate(${margin.left},${margin.top})`);
 
-        const tree = d3.tree().size([height, width / 2]);
+        const tree = d3.tree().size([height, width / 1.5]);
 
         function update(root) {
             console.log("update called");
@@ -230,29 +230,7 @@ export default function RenderMap({ data }) {
                     exit => exit.remove()
                 );
 
-            // Adjust text to avoid overlap
-            //adjustText();
         }
-
-        //function adjustText() {
-        //    // Calculate all text bounding boxes
-        //    const texts = svg.selectAll("text");
-        //    texts.each(function () {
-        //        const bbox = this.getBBox();
-        //        const x = bbox.x;
-        //        const y = bbox.y;
-        //        texts
-        //            .filter(function () {
-        //                const otherBbox = this.getBBox();
-        //                return this !== d3.select(this).node() &&
-        //                    (Math.abs(otherBbox.x - x) < bbox.width * 1.2 &&
-        //                        Math.abs(otherBbox.y - y) < bbox.height * 1.2);
-        //            })
-        //            .attr("x", (d, i) => x + (i % 2 ? 20 : -20)) // Adjust positioning
-        //            .attr("y", (d, i) => y + (i % 2 ? 20 : -20));
-        //    });
-        //}
-
         // Collapse nodes at depth 2 by default
         rootNode.descendants().forEach(d => {
             if (d.depth === 1 && d.children !== null) {
