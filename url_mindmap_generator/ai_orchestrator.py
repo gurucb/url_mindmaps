@@ -23,7 +23,7 @@ class AI_Orchestrator:
                 session_id = uuid.uuid4()
         if file_name == None:
             file_name = "raw_web_contet"
-        file_name = file_name+"_"+session_id+".txt"
+        file_name = file_name+"_"+str(session_id)+".txt"
         with open(file = file_name,mode = "a") as f:
             f.write(self.content)
             f.write("\nHeadings from Web Parser for Propmts:\n")
@@ -47,26 +47,16 @@ class AI_Orchestrator:
         page_summary = self.generate_page_summary()
 
         # 0 shot call to LLM
-        topic_summary = self.generate_topics_with_summary()
-        self.content_JSON=self.parse_response(topic_summary)
+        self.content_JSON = self.generate_topics_with_summary()
+        self.content_JSON = self.parse_response(self.content_JSON)
         self.content_JSON["page_summary"] = page_summary
-
-        self.content_JSON = json.dumps(self.content_JSON, indent=4)
-
-        # 1 shot call to LLM
-        self.content_JSON2=self.llm.generate_topics_2(self.content,self.content_JSON)
+        
+        self.content_JSON = json.dumps(self.content_JSON, indent=4)        
+        # # 1 shot call to LLM
+        self.content_JSON2=self.llm.generate_topics_2(self.content,self.content_JSON,self.user_prompt)
         self.content_JSON2=json.dumps(self.content_JSON2, indent=4)
-        print(self.content_JSON2)
-
-        # 2 shot call to LLM to convert to French
-        if user_prompt != "default":
-            self.content_JSON3 = self.llm.language_conversion(self.content, self.content_JSON2, user_prompt)
-            self.content_JSON3 = json.dumps(self.content_JSON3, indent=4)
-            decoded_response=json.loads(self.content_JSON3)
-            print(json.dumps(decoded_response, ensure_ascii=False, indent=4))
-            return decoded_response
-        else:
-            return self.content_JSON2
+        # print(self.content_JSON2)
+        return self.content_JSON2
 
     def generate_page_summary(self):
         page_summary = self.llm.generate_summary(self.content,self.user_prompt)
@@ -74,10 +64,8 @@ class AI_Orchestrator:
 
 
     def generate_topics_with_summary(self):
-        topic_summary = self.llm.generate_topics(self.content,self.heading_json)
+        topic_summary = self.llm.generate_topics(self.content,self.heading_json,"English")
         return topic_summary
-
-   
     def parse_response(self, topic_response):
         """
         This method parses the topic_response and converts it into the desired JSON structure.
@@ -101,7 +89,6 @@ class AI_Orchestrator:
             }
 
             subtopics = details.get("subtopics", {})
-
             # Check if subtopics is a dictionary
             if isinstance(subtopics, dict):
                 for sub_name, sub_text in subtopics.items():

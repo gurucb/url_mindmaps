@@ -103,7 +103,7 @@ class web_scrapper():
         for word in stop_words:
             # for h1 in h1s_orig:
             #     if str.lower(h1['text'][0]).find(str.lower(word)) != -1:
-                    # h1s.remove(h1)
+            #         h1s.remove(h1)
             for h2 in h2s_orig:
                 if str.lower(h2['text'][0]).find(str.lower(word)) != -1:
                     h2s.remove(h2)

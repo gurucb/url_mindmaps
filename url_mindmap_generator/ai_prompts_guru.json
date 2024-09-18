@@ -1,7 +1,7 @@
 {
     "summarization":{
         "system":"You are a very professional document summarization specialist. Give a document or text you task is to strictly follow the user instructions.",
-        "user":"Please summarize the document",
+        "user":"Please summarize the document in {}",
         "example":"",
         "instructions":[
                     "[Instructions]",
@@ -13,7 +13,7 @@
     },
     "topic_extraction":{
         "system":"You will receive a document and a set of top-level topics. Your task is to identify generalizable topics and at least 3 related subtopics for each topic and subtopic along with summary within the document that can act as top two levels in the hierarchy. ",
-        "user":"Top Level Topics: { ##prompts }",
+        "user":"Translate output and Top Level Topics to {}. \n Top Level Topics: {}",
         "example": {},
         "instructions":[
             "[Instructions]",
@@ -24,17 +24,21 @@
             "- New topics must have a short general lable, and a topic description",
             "- Topics must be broad enough to accomodate future topics",
             "- DO Not Generate topics outside the document",
-            "- Output text in JSON format"
+            "- Output text in JSON format",
+            "- Do not include quotes in text"
         ]
     },
    "topic_extraction_2":{
         "system":"You will receive a JSON template and raw text. Your task is to identify corresponding topics from the text and fill the JSON template.",
-        "user":"JSON Template: { ##prompts }",
+        "user":"Translate output to {}. \n JSON Template: {}",
         "example": {},
         "instructions":[
             "[Instructions]",
+            "- Do not change Keys of JSON document", 
+            "- Change Languague of Values of JSON Document",
             "- Topics must not be document specific",
-            "- Output text in JSON format"
+            "- Output text in Valid JSON format",
+            "- Do not include quotes in text"
         ]
     },
     "language_translation":{

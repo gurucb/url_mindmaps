@@ -38,11 +38,11 @@ class LLMOps:
         return system, user, str(ins_set)
 
 
-    def generate_summary(self,data="",lang="English"):
+    def generate_summary(self,data="",user_prompt=""):
         self.__init_llm_engine(self.llm_engine)
-        system_prompt, user_prompt, ins_set = self.__parse_prompts("summarization")
-        user_prompt = user_prompt + " in " + lang
-        prompt_text = system_prompt + user_prompt + str(ins_set)
+        system_prompt, user, ins_set = self.__parse_prompts("summarization")
+        user_prompt = str(user).format(user_prompt)
+        prompt_text = system_prompt + user_prompt + "\n" + str(ins_set)
         conversation = [
             {"role":"system","content":prompt_text},
             {"role":"user","content":data}
@@ -54,12 +54,12 @@ class LLMOps:
         return respone.choices[0].message.content
     
 
-    def generate_topics(self,data="",headers=""):
+    def generate_topics(self,data="",headers="",user_prompt=""):
         self.__init_llm_engine(self.llm_engine)
         system, user, ins_set = self.__parse_prompts("topic_extraction")
         headings = self.parse_headers_for_prompts(headers=headers)
-        user  = user.replace("##prompts",headings)
-        prompt_text = system + user + str(ins_set)
+        user_prompt  = str(user).format(user_prompt,headings)
+        prompt_text = system + user_prompt + str(ins_set)
         conversation = [
             {"role":"system","content":prompt_text},
             {"role":"user","content":data}
@@ -67,11 +67,11 @@ class LLMOps:
         chat_response=self.plugin_llm(conversation)
         return chat_response
     
-    def generate_topics_2(self,data="",json_template=""):
+    def generate_topics_2(self,data="",json_template="",user_prompt=""):
         self.__init_llm_engine(self.llm_engine)
         system, user, ins_set = self.__parse_prompts("topic_extraction_2")
-        user  = user.replace("##prompts",json_template)
-        prompt_text = system + user 
+        user_prompt  = str(user).format(user_prompt,json_template)
+        prompt_text = system + user_prompt 
         conversation = [
             {"role":"system","content":prompt_text},
             {"role":"user","content":data}
@@ -79,18 +79,7 @@ class LLMOps:
         chat_response=self.plugin_llm(conversation)
         return chat_response
     
-    def language_conversion(self,data="",json_template="", user_prompt=""):
-        self.__init_llm_engine(self.llm_engine)
-        system, user, ins_set = self.__parse_prompts("language_translation")
-        system=system.replace("##prompts", user_prompt)
-        user  = user.replace("##prompts",json_template)
-        prompt_text = system + user 
-        conversation = [
-            {"role":"system","content":prompt_text},
-            {"role":"user","content":data}
-        ]
-        chat_response=self.plugin_llm(conversation)
-        return chat_response
+
 
     def parse_headers_for_prompts(self,headers):
         headings = ""
