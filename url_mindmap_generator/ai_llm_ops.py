@@ -23,7 +23,7 @@ class LLMOps:
         )
 
     def __parse_prompts(self,task):
-        file_path = "./ai_prompts_guru.json"
+        file_path = "./ai_prompts.json"
         with open(file_path,"r") as f:
             temp = f.read()
             self.prompts = json.loads(temp)

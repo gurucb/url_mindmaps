@@ -1,4 +1,4 @@
-# Owner: Anil / Guru
+# Owner:  Guru
 # Purpose: Scrape Web Page (given a URL and extract)
 # 1. Headers as JSON
 # 2. Anchors as JSON
