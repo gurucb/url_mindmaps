@@ -91,19 +91,44 @@ export default function RenderMap({ data }) {
                                 window.open(d.data.link, "_blank");
                             }
                         })
-                        .on("mouseover", (event, d) => {
-                            tooltip.transition().duration(200).style("opacity", .9);
-                            tooltip.html(d.data.text)
-                                .style("left", `${event.pageX + 5}px`)
-                                .style("top", `${event.pageY - 28}px`);
+                        .on("click", (event, d) => {
+                            if (d.data.link) {
+                                window.open(d.data.link, "_blank");
+                            }
                         })
-                        .on("mouseout", () => {
-                            tooltip.transition().duration(500).style("opacity", 0);
-                        }),
+                        .call(d3.drag()
+                            .on("start", (event, d) => {
+                                d3.select(this).raise().classed("active", true);
+                            })
+                            .on("drag", (event, d) => {
+                                // Update node position
+                                d.x += event.dy;
+                                d.y += event.dx;
+
+                                // Update the position of the dragged node
+                                d3.select(this)
+                                    .attr("transform", `translate(${d.y},${d.x})`);
+
+                                // Update all descendant nodes' positions
+                                svg.selectAll(".node").filter(descendant => d.descendants().includes(descendant)).attr("transform", (descendant) => `translate(${descendant.y},${descendant.x})`);
+
+                                // Update links for the dragged node
+                                link.attr("d", d => `
+                                    M${d.y},${d.x}
+                                    C${(d.y + d.parent.y) / 2},${d.x}
+                                    ${(d.y + d.parent.y) / 2},${d.parent.x}
+                                    ${d.parent.y},${d.parent.x}
+                                `);
+                            })
+                            .on("end", (event, d) => {
+                                // Update the rootNode state to reflect the new positions
+                                setRootNode(d3.hierarchy(root.data, d => d.sub_topics));
+                                d3.select(this).classed("active", false);
+                            }),
                     update => update
                         .attr("transform", d => `translate(${d.y},${d.x})`),
                     exit => exit.remove()
-                );
+                ));
 
             // Add circle background for nodes
             node.append("circle")
