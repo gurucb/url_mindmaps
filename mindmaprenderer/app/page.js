@@ -141,7 +141,8 @@ export default function Home() {
             }
             console.log(response);
             const data_ = await response.json();
-            const dataString = JSON.stringify(data_);
+            const dataString = data_    
+            // const dataString = JSON.stringify(data_);
             const data = JSON.parse(dataString);
             console.log(data);
             // Set the data and page summary states

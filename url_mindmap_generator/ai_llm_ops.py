@@ -38,10 +38,11 @@ class LLMOps:
         return system, user, str(ins_set)
 
 
-    def generate_summary(self,data=""):
+    def generate_summary(self,data="",lang="English"):
         self.__init_llm_engine(self.llm_engine)
-        system, user, ins_set = self.__parse_prompts("summarization")
-        prompt_text = system + user + str(ins_set)
+        system_prompt, user_prompt, ins_set = self.__parse_prompts("summarization")
+        user_prompt = user_prompt + " in " + lang
+        prompt_text = system_prompt + user_prompt + str(ins_set)
         conversation = [
             {"role":"system","content":prompt_text},
             {"role":"user","content":data}

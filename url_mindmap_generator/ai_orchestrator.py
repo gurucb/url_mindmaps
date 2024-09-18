@@ -1,6 +1,7 @@
 import json
-import url_mindmap_generator.ai_cleanup as dc 
+import ai_cleanup as dc 
 import ai_llm_ops as llm
+import uuid
 
 class AI_Orchestrator:
     heading_json = None
@@ -17,7 +18,11 @@ class AI_Orchestrator:
         
     ##FileName: Take Session ID and Create the filename with SessionId and URL_Finale.
     ##This will enable to create AI Search and also build graph based systems.
-    def store_raw_content(self,session_id = "123",file_name="test"):
+    def store_raw_content(self,session_id=None,file_name=None):
+        if session_id == None:
+                session_id = uuid.uuid4()
+        if file_name == None:
+            file_name = "raw_web_contet"
         file_name = file_name+"_"+session_id+".txt"
         with open(file = file_name,mode = "a") as f:
             f.write(self.content)
@@ -26,11 +31,11 @@ class AI_Orchestrator:
 
     def generate_content_JSON(self,heading_json,links_json,content,user_prompt) -> json:
 
-        
         # initialize clean content
         self.heading_json = heading_json
         self.links_json = links_json
         self.content = content
+        self.user_prompt = user_prompt
         
         # Clean Content
         self.content = self.data_cleanup.cleanup(content = self.content)
@@ -40,14 +45,15 @@ class AI_Orchestrator:
 
         ##Generate Page Summary
         page_summary = self.generate_page_summary()
+
         # 0 shot call to LLM
         topic_summary = self.generate_topics_with_summary()
         self.content_JSON=self.parse_response(topic_summary)
         self.content_JSON["page_summary"] = page_summary
 
         self.content_JSON = json.dumps(self.content_JSON, indent=4)
-        # 1 shot call to LLM
 
+        # 1 shot call to LLM
         self.content_JSON2=self.llm.generate_topics_2(self.content,self.content_JSON)
         self.content_JSON2=json.dumps(self.content_JSON2, indent=4)
         print(self.content_JSON2)
@@ -63,7 +69,7 @@ class AI_Orchestrator:
             return self.content_JSON2
 
     def generate_page_summary(self):
-        page_summary = self.llm.generate_summary(self.content)
+        page_summary = self.llm.generate_summary(self.content,self.user_prompt)
         return page_summary
 
 

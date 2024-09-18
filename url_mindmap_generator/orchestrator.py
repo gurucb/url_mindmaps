@@ -4,12 +4,9 @@
 import web_scrapper as ws
 import ai_plugin as ai
 import mind_maps as mp
-import url_mindmap_generator.ai_orchestrator as og
+import ai_orchestrator as og
 
 class Orchestrator():
-
-    #content_json = {}
-    content_json="{\"page_summary\":\"FullPageSummaryofthegivenURL\",\"content\":\"content\",\"topics\":[{\"name\":\"firsttopic\",\"sub_topics\":[{\"name\":\"firstsubtopic\",\"text\":\"Firstcsubtopictext\"},{\"name\":\"firstsubtopic\",\"text\":\"Firstcsubtopictext\"},{\"name\":\"firstsubtopic\",\"text\":\"Firstcsubtopictext\"}]},{\"name\":\"Secondtopic\",\"sub_topics\":[{\"name\":\"SecondFirstsubtopic\",\"text\":\"SecondFirstcsubtopictext\"},{\"name\":\"Secondsecondsubtopic\",\"text\":\"Secondsecondtopictext\"},{\"name\":\"SecondThirdsubtopic\",\"text\":\"SecondThirdtopictext\"}]}],\"URLS\":[\"www.Microsoft.com\",\"www.Google.com\",\"www.AWS.com\"]}"
 
     anchor_json = {}
     url_json = {}

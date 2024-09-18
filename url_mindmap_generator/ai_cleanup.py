@@ -17,7 +17,7 @@ class DataCleanup:
                                 punct=True
                                 )
         return self.content
-
+    
     def tokenize_content(self) -> list:
         pass
 
