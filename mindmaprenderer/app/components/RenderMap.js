@@ -113,26 +113,26 @@ export default function RenderMap({ data }) {
                 .style("stroke-width", "0.5px");
 
             // Add URL icon for nodes with a link
-            const linkIconBase64 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICA8cGF0aCBkPSJNMTIgNGwtMi0yTDYuOTUgMTMuOTZMMjAuMyA2Ljc1bDEuMjUgMS4yNWwxLjI1LTEuMjVMMi4yMCA4LjUsNCAxNiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtY29sb3I9IiMzMzMiLz48L3N2Zz4=";
+            //const linkIconBase64 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICA8cGF0aCBkPSJNMTIgNGwtMi0yTDYuOTUgMTMuOTZMMjAuMyA2Ljc1bDEuMjUgMS4yNWwxLjI1LTEuMjVMMi4yMCA4LjUsNCAxNiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtY29sb3I9IiMzMzMiLz48L3N2Zz4=";
 
             // Handle icons
-            const icon = node
-                .selectAll("image")
-                .data(d => d.data.link ? [d] : [], d => d.id) // Only bind data if node has a link
-                .join(
-                    enter => enter.append("svg:image")
-                        .attr("xlink:href", linkIconBase64)
-                        .attr("width", 20) // Adjust size if necessary
-                        .attr("height", 20) // Adjust size if necessary
-                        .attr("x", -15) // Adjust positioning if necessary
-                        .attr("y", -40) // Move the icon slightly above the node
-                        .style("cursor", "pointer")
-                        .on("click", (event, d) => {
-                            if (d.data.link) window.open(d.data.link, "_blank");
-                        }),
-                    update => update,
-                    exit => exit.remove()
-                );
+            //const icon = node
+            //    .selectAll("image")
+            //    .data(d => d.data.link ? [d] : [], d => d.id) // Only bind data if node has a link
+            //    .join(
+            //        enter => enter.append("svg:image")
+            //            .attr("xlink:href", linkIconBase64)
+            //            .attr("width", 20) // Adjust size if necessary
+            //            .attr("height", 20) // Adjust size if necessary
+            //            .attr("x", -15) // Adjust positioning if necessary
+            //            .attr("y", -40) // Move the icon slightly above the node
+            //            .style("cursor", "pointer")
+            //            .on("click", (event, d) => {
+            //                if (d.data.link) window.open(d.data.link, "_blank");
+            //            }),
+            //        update => update,
+            //        exit => exit.remove()
+            //    );
 
             // Add text
             const text = node
