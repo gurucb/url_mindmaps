@@ -1,0 +1,9 @@
+[
+    {
+        "model": "gpt-4o-mini",
+        "api_type": "azure",
+        "api_key": "3e328fb1d0a3439990774cb1543bae17",
+        "base_url": "https://kirthikarajaganeshcognitive.openai.azure.com/",
+        "api_version": "2023-03-15-preview"
+    }
+]
